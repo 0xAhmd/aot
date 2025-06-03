@@ -107,7 +107,6 @@ class _CharacterPageState extends State<CharacterPage> {
               slivers: [
                 CupertinoSliverRefreshControl(
                   onRefresh: () async {
-                    // Refresh logic: fetch characters again (reset)
                     await context.read<CharactersCubit>().getCharacters(
                       refresh: true,
                     );
@@ -126,11 +125,7 @@ class _CharacterPageState extends State<CharacterPage> {
                           ),
                         ),
                         const SizedBox(height: 12),
-                        MainCharactersListView(
-                          characters: context
-                              .read<CharactersCubit>()
-                              .characters,
-                        ),
+                        MainCharactersListView(characters: cubit.characters),
                         const Padding(
                           padding: EdgeInsets.symmetric(horizontal: 16),
                           child: Text(
