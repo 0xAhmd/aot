@@ -6,13 +6,17 @@ class CharactersRepo {
 
   CharactersRepo({required this.characterWebServices});
 
-  Future<List<CharacterModel>> getCharacters() async {
-    final response = await characterWebServices
-        .getCharacters(); // this is a Map<String, dynamic>
+  Future<Map<String, dynamic>> getCharacters({int page = 1}) async {
+    final response = await characterWebServices.getCharacters(page: page);
 
-    final results =
-        response['results'] as List<dynamic>; // ✅ safely access the list
+    print("Raw API response: $response");
 
-    return results.map((e) => CharacterModel.fromJson(e)).toList();
+    final info = response['info'] as Map<String, dynamic>;
+    final results = response['results'] as List<dynamic>;
+
+    return {
+      'info': info,
+      'results': results.map((e) => CharacterModel.fromJson(e)).toList(),
+    };
   }
 }

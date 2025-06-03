@@ -7,10 +7,11 @@ final class CharactersInitial extends CharactersState {}
 
 final class CharactersLoading extends CharactersState {}
 
-final class CharactersLoaded extends CharactersState {
+class CharactersLoaded extends CharactersState {
   final List<CharacterModel> characters;
+  final bool hasMore;
 
-  CharactersLoaded({required this.characters});
+  CharactersLoaded({required this.characters, required this.hasMore});
 }
 
 final class CharactersError extends CharactersState {

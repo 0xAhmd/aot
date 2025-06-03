@@ -1,5 +1,4 @@
 import 'package:aot/features/characters/presentation/cubit/characters_cubit.dart';
-import 'package:aot/features/titans/presentation/cubit/titans_cubit.dart';
 import 'package:aot/features/characters/presentation/widgets/build_character_list.dart';
 import 'package:aot/features/characters/presentation/widgets/main_characters_list_view.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,75 +13,73 @@ class CharacterPage extends StatefulWidget {
 }
 
 class _CharacterPageState extends State<CharacterPage> {
+  final ScrollController _scrollController = ScrollController();
+
   @override
   void initState() {
     super.initState();
     context.read<CharactersCubit>().getCharacters();
-    context.read<TitansCubit>().getTitans();
+    _scrollController.addListener(_onScroll);
+  }
+
+  void _onScroll() {
+    final cubit = context.read<CharactersCubit>();
+    final state = cubit.state;
+
+    if (_scrollController.position.pixels >=
+            _scrollController.position.maxScrollExtent - 200 &&
+        state is CharactersLoaded &&
+        state.hasMore) {
+      cubit.getCharacters(loadMore: true);
+    }
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: BlocBuilder<CharactersCubit, CharactersState>(
-          builder: (context, charState) {
-            if (charState is CharactersLoading ||
-                charState is CharactersInitial) {
-              return const Center(child: CupertinoActivityIndicator());
-            } else if (charState is CharactersLoaded) {
-              final characters = charState.characters;
+      body: BlocBuilder<CharactersCubit, CharactersState>(
+        builder: (context, state) {
+          if (state is CharactersLoading || state is CharactersInitial) {
+            return const Center(child: CupertinoActivityIndicator());
+          } else if (state is CharactersLoaded) {
+            final characters = state.characters;
 
-              return SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 16),
-                        child: Text(
-                          "Main Characters",
-                          style: TextStyle(color: Colors.white, fontSize: 24),
-                        ),
-                      ),
-                      const SizedBox(height: 12),
-
-                      MainCharactersListView(characters: characters),
-
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 16),
-                        child: Text(
-                          "Characters",
-                          style: TextStyle(color: Colors.white, fontSize: 24),
-                        ),
-                      ),
-                      const SizedBox(height: 12),
-                      buildCharacterList(),
-                    ],
-                  ),
+            return ListView(
+              controller: _scrollController,
+              padding: const EdgeInsets.symmetric(vertical: 20),
+              children: [
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  child: Text("Main Characters",
+                      style: TextStyle(color: Colors.white, fontSize: 24)),
                 ),
-              );
-            } else if (charState is CharactersError) {
-              return Center(
-                child: Text(
-                  "Error: ${charState.message}",
-                  style: const TextStyle(color: Colors.red),
+                const SizedBox(height: 12),
+                MainCharactersListView(characters: characters),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  child: Text("Characters",
+                      style: TextStyle(color: Colors.white, fontSize: 24)),
                 ),
-              );
-            } else {
-              return const Center(child: Text("Unknown error"));
-            }
-          },
-        ),
+                const SizedBox(height: 12),
+                CharacterListWithPagination(), // ✅ now self-contained grid
+              ],
+            );
+          } else if (state is CharactersError) {
+            return Center(
+              child: Text("Error: ${state.message}",
+                  style: const TextStyle(color: Colors.red)),
+            );
+          } else {
+            return const SizedBox.shrink();
+          }
+        },
       ),
     );
   }
-
-  //! make pagination
-  //! filter the main characters to display only top 10 character
-  //! change characters UI to a grid view
-  //! make the tab bar
-  //! make the search bar
-  //! splash screen and launcher icon
 }
