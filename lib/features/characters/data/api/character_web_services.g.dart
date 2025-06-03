@@ -12,7 +12,6 @@ class _CharacterWebServices implements CharacterWebServices {
   _CharacterWebServices(
     this._dio, {
     this.baseUrl,
-    // ignore: unused_element_parameter
     this.errorLogger,
   }) {
     baseUrl ??= 'https://api.attackontitanapi.com/';
