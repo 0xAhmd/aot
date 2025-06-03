@@ -99,32 +99,51 @@ class _CharacterPageState extends State<CharacterPage> {
           if (state is CharactersLoading || state is CharactersInitial) {
             return const Center(child: CupertinoActivityIndicator());
           } else if (state is CharactersLoaded) {
-            return ListView(
+            return CustomScrollView(
               controller: _scrollController,
-              padding: const EdgeInsets.symmetric(vertical: 20),
-              children: [
-                if (!_isSearching) ...[
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16),
-                    child: Text(
-                      "Main Characters",
-                      style: TextStyle(color: Colors.white, fontSize: 24),
-                    ),
+              physics: const BouncingScrollPhysics(
+                parent: AlwaysScrollableScrollPhysics(),
+              ),
+              slivers: [
+                CupertinoSliverRefreshControl(
+                  onRefresh: () async {
+                    // Refresh logic: fetch characters again (reset)
+                    await context.read<CharactersCubit>().getCharacters(
+                      refresh: true,
+                    );
+                  },
+                ),
+                SliverPadding(
+                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  sliver: SliverList(
+                    delegate: SliverChildListDelegate([
+                      if (!_isSearching) ...[
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 16),
+                          child: Text(
+                            "Main Characters",
+                            style: TextStyle(color: Colors.white, fontSize: 24),
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        MainCharactersListView(
+                          characters: context
+                              .read<CharactersCubit>()
+                              .characters,
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 16),
+                          child: Text(
+                            "Characters",
+                            style: TextStyle(color: Colors.white, fontSize: 24),
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                      ],
+                      const CharacterListWithPagination(),
+                    ]),
                   ),
-                  const SizedBox(height: 12),
-                  MainCharactersListView(
-                    characters: context.read<CharactersCubit>().characters,
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16),
-                    child: Text(
-                      "Characters",
-                      style: TextStyle(color: Colors.white, fontSize: 24),
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                ],
-                const CharacterListWithPagination(),
+                ),
               ],
             );
           } else if (state is CharactersError) {

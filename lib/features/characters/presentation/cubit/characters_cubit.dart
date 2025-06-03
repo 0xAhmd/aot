@@ -15,33 +15,11 @@ class CharactersCubit extends Cubit<CharactersState> {
   final List<CharacterModel> _regularCharacters = [];
 
   List<CharacterModel> get characters => [
-    ..._priorityCharactersLoaded,
-    ..._regularCharacters,
-  ];
+        ..._priorityCharactersLoaded,
+        ..._regularCharacters,
+      ];
+
   List<CharacterModel> _filteredCharacters = [];
-
-  void searchCharacters(String query) {
-    if (query.isEmpty) {
-      emit(
-        CharactersLoaded(
-          characters: [..._priorityCharactersLoaded, ..._regularCharacters],
-          hasMore: _hasMore,
-        ),
-      );
-    } else {
-      final lowerQuery = query.toLowerCase();
-      _filteredCharacters = characters
-          .where((c) => c.name?.toLowerCase().contains(lowerQuery) ?? false)
-          .toList();
-
-      emit(
-        CharactersLoaded(
-          characters: List.from(_filteredCharacters),
-          hasMore: false,
-        ),
-      );
-    }
-  }
 
   final List<String> _priorityOrder = [
     'eren jaeger',
@@ -75,11 +53,15 @@ class CharactersCubit extends Cubit<CharactersState> {
 
   CharactersCubit(this.repo) : super(CharactersInitial());
 
-  Future<void> getCharacters({bool loadMore = false}) async {
-    if (_isFetching || (!_hasMore && loadMore)) return;
+  Future<void> getCharacters({
+    bool loadMore = false,
+    bool refresh = false,
+  }) async {
+    if (_isFetching || (!_hasMore && loadMore && !refresh)) return;
     _isFetching = true;
 
-    if (!loadMore) {
+    if (refresh || !loadMore) {
+      // Reset for refresh or initial load
       _currentPage = 1;
       _priorityCharactersLoaded.clear();
       _regularCharacters.clear();
@@ -96,7 +78,6 @@ class CharactersCubit extends Cubit<CharactersState> {
         final name = character.name?.toLowerCase() ?? '';
 
         if (_priorityOrder.contains(name)) {
-          // Avoid duplicates
           if (!_priorityCharactersLoaded.any(
             (c) => c.name?.toLowerCase() == name,
           )) {
@@ -112,7 +93,7 @@ class CharactersCubit extends Cubit<CharactersState> {
       _currentPage++;
       _hasMore = _currentPage <= (info['pages'] ?? 1);
 
-      // Sort both lists
+      // Sort lists
       _priorityCharactersLoaded.sort((a, b) {
         return _priorityOrder
             .indexOf(a.name!.toLowerCase())
@@ -121,8 +102,8 @@ class CharactersCubit extends Cubit<CharactersState> {
 
       _regularCharacters.sort(
         (a, b) => (a.name ?? '').toLowerCase().compareTo(
-          (b.name ?? '').toLowerCase(),
-        ),
+              (b.name ?? '').toLowerCase(),
+            ),
       );
 
       emit(
@@ -135,6 +116,29 @@ class CharactersCubit extends Cubit<CharactersState> {
       emit(CharactersError(message: e.toString()));
     } finally {
       _isFetching = false;
+    }
+  }
+
+  void searchCharacters(String query) {
+    if (query.isEmpty) {
+      emit(
+        CharactersLoaded(
+          characters: [..._priorityCharactersLoaded, ..._regularCharacters],
+          hasMore: _hasMore,
+        ),
+      );
+    } else {
+      final lowerQuery = query.toLowerCase();
+      _filteredCharacters = characters
+          .where((c) => c.name?.toLowerCase().contains(lowerQuery) ?? false)
+          .toList();
+
+      emit(
+        CharactersLoaded(
+          characters: List.from(_filteredCharacters),
+          hasMore: false,
+        ),
+      );
     }
   }
 }
