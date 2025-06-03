@@ -8,16 +8,24 @@ class MainCharactersListView extends StatelessWidget {
   final List<CharacterModel> characters;
 
   static const List<String> mainCharacterNames = [
-    'Eren Yeager',
+    'Eren Jaeger',
+    'Levi Ackermann',
     'Mikasa Ackermann',
     'Armin Arlelt',
-    'Levi Ackermann',
     'Erwin Smith',
-    'Jean Kirschtein',
-    'Sasha Braus',
-    'Conny Springer',
-    'Historia Reiss',
+    'Hange Zoë',
     'Reiner Braun',
+    'Zeke Jaeger',
+    'Jean Kirschtein',
+    'Annie Leonhart',
+    'Sasha Braus',
+    'Historia Reiss',
+    'Conny Springer',
+    'Hannes',
+    'Dot Pyxis',
+    'Ymir Fritz',
+    'Pieck Finger',
+    'Kenny Ackermann',
   ];
 
   @override
@@ -27,9 +35,12 @@ class MainCharactersListView extends StatelessWidget {
         .where((c) => mainCharacterNames.contains(c.name))
         .toList();
 
-// reverse it 
-    filtered.sort((a, b) => mainCharacterNames.indexOf(a.name ?? '')
-        .compareTo(mainCharacterNames.indexOf(b.name ?? '')));
+    // reverse it
+    filtered.sort(
+      (a, b) => mainCharacterNames
+          .indexOf(a.name ?? '')
+          .compareTo(mainCharacterNames.indexOf(b.name ?? '')),
+    );
 
     return SizedBox(
       height: 220,

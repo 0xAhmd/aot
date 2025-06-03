@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class MainCharactersCard extends StatelessWidget {
   final String imageUrl;
@@ -16,27 +16,35 @@ class MainCharactersCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 190, // was 150
-      margin: const EdgeInsets.only(right: 16), // more space between cards
+      width: 190,
+      margin: const EdgeInsets.only(right: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Image
+          // Cached Image
           ClipRRect(
-            borderRadius: BorderRadius.circular(12), // slightly more rounded
-            child: Image.network(
-              imageUrl,
-              height: 140, // was 100
+            borderRadius: BorderRadius.circular(12),
+            child: CachedNetworkImage(
+              imageUrl: imageUrl,
+              height: 140,
               width: 190,
               fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) {
-                return Container(
-                  height: 140,
-                  width: 190,
-                  color: Colors.grey[800],
-                  child: const Icon(Icons.broken_image, color: Colors.white, size: 32),
-                );
-              },
+              placeholder: (context, url) => Container(
+                height: 140,
+                width: 190,
+                color: Colors.grey[800],
+                child: const Center(child: CircularProgressIndicator()),
+              ),
+              errorWidget: (context, url, error) => Container(
+                height: 140,
+                width: 190,
+                color: Colors.grey[800],
+                child: const Icon(
+                  Icons.broken_image,
+                  color: Colors.white,
+                  size: 32,
+                ),
+              ),
             ),
           ),
           const SizedBox(height: 12),
@@ -47,7 +55,7 @@ class MainCharactersCard extends StatelessWidget {
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: const TextStyle(
-              fontSize: 16, // was 14
+              fontSize: 16,
               color: Colors.white,
               fontWeight: FontWeight.bold,
             ),
@@ -57,10 +65,7 @@ class MainCharactersCard extends StatelessWidget {
           if (subtitle != null)
             Text(
               subtitle!,
-              style: const TextStyle(
-                fontSize: 13, // was 12
-                color: Colors.white70,
-              ),
+              style: const TextStyle(fontSize: 13, color: Colors.white70),
             ),
         ],
       ),

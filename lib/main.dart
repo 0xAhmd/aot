@@ -1,4 +1,5 @@
 import 'package:aot/features/characters/data/api/character_web_services.dart';
+import 'package:aot/features/characters/data/models/character_model.dart';
 import 'package:aot/features/characters/presentation/pages/character_page.dart';
 
 import 'package:aot/features/characters/data/repository/characters_repo.dart';
@@ -9,8 +10,12 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive_flutter/adapters.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  Hive.registerAdapter(CharacterModelAdapter());
   runApp(const MyApp());
 }
 

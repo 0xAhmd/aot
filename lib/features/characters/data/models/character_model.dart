@@ -1,23 +1,52 @@
+import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'character_model.g.dart';
+part 'character_model.g.dart'; // For JSON serialization
 
+@HiveType(typeId: 0)
 @JsonSerializable()
 class CharacterModel {
+  @HiveField(0)
   int? id;
+
+  @HiveField(1)
   String? name;
+
+  @HiveField(2)
   @JsonKey(name: 'img')
   final String? img;
+
+  @HiveField(3)
   List<String>? nicknames;
+
+  @HiveField(4)
   List<String>? roles;
+
+  @HiveField(5)
   dynamic age;
+
+  @HiveField(6)
   String? gender;
+
+  @HiveField(7)
   String? height;
+
+  @HiveField(8)
   String? status;
+
+  @HiveField(9)
   String? occupation;
+
+  @HiveField(10)
   List<String>? episodes;
+
+  @HiveField(11)
   String? birthplace;
+
+  @HiveField(12)
   String? residence;
+
+  @HiveField(13)
   String? family;
 
   CharacterModel({

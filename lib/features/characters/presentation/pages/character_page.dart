@@ -77,7 +77,7 @@ class _CharacterPageState extends State<CharacterPage> {
                 ),
                 onChanged: cubit.searchCharacters,
               )
-            : const Text('Characters', style: TextStyle(color: Colors.white)),
+            : const Text('AOT Fandom', style: TextStyle(color: Colors.white)),
         actions: [
           IconButton(
             icon: Icon(
@@ -104,7 +104,6 @@ class _CharacterPageState extends State<CharacterPage> {
               padding: const EdgeInsets.symmetric(vertical: 20),
               children: [
                 if (!_isSearching) ...[
-                  const SizedBox(height: 12),
                   const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16),
                     child: Text(
