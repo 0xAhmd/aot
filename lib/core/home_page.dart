@@ -1,4 +1,5 @@
 import 'package:aot/features/characters/presentation/pages/character_page.dart';
+import 'package:aot/features/locations/presentation/pages/location_page.dart';
 import 'package:aot/features/organaizations/presentation/pages/organizations_page.dart';
 import 'package:aot/features/titans/presentation/pages/titans_page.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,7 @@ class _HomePageState extends State<HomePage> {
     CharacterPage(),
     TitansPage(),
     OrganizationsPage(),
+    LocationPage(),
   ];
 
   @override
@@ -55,6 +57,11 @@ class _HomePageState extends State<HomePage> {
               GButton(
                 icon: Icons.schema_outlined,
                 text: "Organizations",
+                textStyle: TextStyle(color: Colors.white, fontSize: 17),
+              ),
+              GButton(
+                icon: Icons.location_on_sharp,
+                text: "Locations",
                 textStyle: TextStyle(color: Colors.white, fontSize: 17),
               ),
             ],

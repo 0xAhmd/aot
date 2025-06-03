@@ -1,3 +1,6 @@
+import 'package:aot/features/locations/data/api/location_web_service.dart';
+import 'package:aot/features/locations/data/repo/locations_repo.dart';
+import 'package:aot/features/locations/presentation/cubit/locations_cubit.dart';
 import 'package:get_it/get_it.dart';
 import 'package:dio/dio.dart';
 import 'package:aot/features/characters/data/api/character_web_services.dart';
@@ -33,6 +36,13 @@ void setupLocator() {
     () => OrganizationsRepo(organizationsWebService: sl()),
   );
   sl.registerFactory<OrganizationsCubit>(() => OrganizationsCubit(sl()));
+
+  // Locations
+  sl.registerLazySingleton<LocationWebService>(() => LocationWebService(sl()));
+  sl.registerLazySingleton<LocationsRepo>(
+    () => LocationsRepo(locationWebService: sl()),
+  );
+  sl.registerFactory<LocationsCubit>(() => LocationsCubit(sl()));
 
   // Titans
   sl.registerLazySingleton<TitanWebServices>(() => TitanWebServices(sl()));

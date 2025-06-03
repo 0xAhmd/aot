@@ -1,6 +1,7 @@
 import 'package:aot/core/home_page.dart';
 import 'package:aot/features/characters/data/models/character_model.dart';
 import 'package:aot/features/characters/presentation/cubit/characters_cubit.dart';
+import 'package:aot/features/locations/presentation/cubit/locations_cubit.dart';
 import 'package:aot/features/organaizations/presentation/cubit/organizations_cubit.dart';
 
 import 'package:aot/features/titans/presentation/cubit/titans_cubit.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => sl<CharactersCubit>()),
         BlocProvider(create: (_) => sl<OrganizationsCubit>()),
         BlocProvider(create: (_) => sl<TitansCubit>()),
+        BlocProvider(create: (_) => sl<LocationsCubit>()),
       ],
       child: MaterialApp(
         title: 'AOT',
