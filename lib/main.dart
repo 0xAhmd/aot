@@ -2,6 +2,7 @@ import 'package:aot/core/home_page.dart';
 import 'package:aot/features/characters/data/models/character_model.dart';
 import 'package:aot/features/characters/presentation/cubit/characters_cubit.dart';
 import 'package:aot/features/locations/presentation/cubit/locations_cubit.dart';
+import 'package:aot/features/organaizations/data/models/organaizations.dart';
 import 'package:aot/features/organaizations/presentation/cubit/organizations_cubit.dart';
 
 import 'package:aot/features/titans/presentation/cubit/titans_cubit.dart';
@@ -15,6 +16,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   Hive.registerAdapter(CharacterModelAdapter());
+  Hive.registerAdapter(OrganaizationsAdapter());
   setupLocator(); // Initialize GetIt
   runApp(const MyApp());
 }
