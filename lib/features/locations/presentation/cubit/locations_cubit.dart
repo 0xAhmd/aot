@@ -14,37 +14,6 @@ class LocationsCubit extends Cubit<LocationsState> {
 
   LocationsCubit(this.repo) : super(LocationsInitial());
 
-  Future<void> getLocations({bool loadMore = false}) async {
-    if (_isFetching || (!_hasMore && loadMore)) return;
-    _isFetching = true;
-
-    if (!loadMore) {
-      _currentPage = 1;
-      _locations.clear();
-      _hasMore = true;
-      emit(LocationsLoading());
-    }
-
-    try {
-      final data = await repo.getLocation(page: _currentPage);
-      final info = data['info'];
-      final results = data['results'] as List<LocationModel>;
-
-      _locations.addAll(results);
-      _hasMore = info['next_page'] != null;
-      _currentPage++;
-
-      emit(
-        LocationsLoaded(locations: List.from(_locations), hasMore: _hasMore),
-      );
-    } catch (e) {
-      emit(LocationsError(errorMessage: e.toString()));
-    } finally {
-      _isFetching = false;
-    }
-  }
-  // ...existing code...
-
   void searchLocations(String query) {
     if (query.isEmpty) {
       emit(
@@ -60,5 +29,35 @@ class LocationsCubit extends Cubit<LocationsState> {
     }
   }
 
-  // ...existing code...
+  Future<void> getLocations({bool loadMore = false}) async {
+    if (_isFetching || (!_hasMore && loadMore)) return;
+    _isFetching = true;
+
+    if (!loadMore) {
+      _currentPage = 1;
+      _locations.clear();
+      _hasMore = true;
+      emit(LocationsLoading());
+    }
+
+    try {
+      final data = await repo.getLocations(page: _currentPage);
+      final info = data['info'];
+      final results = data['results'] as List<LocationModel>;
+
+      _locations.addAll(results); // This is correct!
+      _hasMore = info['next_page'] != null;
+      _currentPage++;
+
+      emit(
+        LocationsLoaded(locations: List.from(_locations), hasMore: _hasMore),
+      );
+    } catch (e) {
+      emit(LocationsError(errorMessage: e.toString()));
+    } finally {
+      _isFetching = false;
+    }
+  }
 }
+  // ...existing code...
+

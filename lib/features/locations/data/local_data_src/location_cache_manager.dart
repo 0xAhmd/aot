@@ -4,43 +4,72 @@ import 'package:hive/hive.dart';
 class LocationCacheManager {
   static const String boxName = 'locations_cache';
 
+  // Open or create the Hive box for caching
   static Future<Box> _openBox() async {
-    return await Hive.openBox<LocationModel>(boxName);
+    return await Hive.openBox(boxName);
   }
 
-  static Future<void> cacheLocationsPage(int page, List<LocationModel> locations) async {
+  /// Cache a page of locations with a timestamp and whether there are more pages
+  static Future<void> cacheLocationsPage(
+    int page,
+    List<LocationModel> locations,
+    bool hasMore,
+  ) async {
     final box = await _openBox();
 
     final cacheData = {
       'timestamp': DateTime.now().millisecondsSinceEpoch,
-      'locations': locations,
+      'locations': locations.map((e) => e.toJson()).toList(),
+      'hasMore': hasMore,
     };
 
     await box.put('page_$page', cacheData);
     print('Cached ${locations.length} locations for page $page');
   }
 
-  static Future<List<LocationModel>?> getCachedLocationsPage(int page) async {
+  /// Retrieve cached page data.
+  /// Returns null if no cache or expired.
+  /// Otherwise returns a Map with keys:
+  /// - 'info': Map<String, dynamic> containing pagination info
+  /// - 'results': List<LocationModel> with cached locations
+  static Future<Map<String, dynamic>?> getCachedLocationsPage(int page) async {
     final box = await _openBox();
+    final dynamic rawData = box.get('page_$page');
 
-    final cacheData = box.get('page_$page');
-    if (cacheData == null) {
-      print('No cache found for page $page');
+    if (rawData == null || rawData is! Map) {
+      print('No valid cache found for page $page');
       return null;
     }
 
-    final timestamp = cacheData['timestamp'] as int;
-    final cachedLocations = (cacheData['locations'] as List).cast<LocationModel>();
+    final int? timestamp = rawData['timestamp'] as int?;
+    if (timestamp == null) {
+      // Invalid cache, remove it
+      await box.delete('page_$page');
+      return null;
+    }
 
-    final isExpired = DateTime.now().millisecondsSinceEpoch - timestamp > 12 * 60 * 60 * 1000;
-
+    // Cache expiration: 12 hours (in milliseconds)
+    final bool isExpired =
+        DateTime.now().millisecondsSinceEpoch - timestamp > 12 * 60 * 60 * 1000;
     if (isExpired) {
       await box.delete('page_$page');
       print('Cache expired for page $page, deleted cache');
       return null;
     }
 
-    print('Loaded ${cachedLocations.length} locations from cache for page $page');
-    return cachedLocations;
+    // Deserialize location list
+    final List<dynamic>? locationList = rawData['locations'] as List<dynamic>?;
+    final List<LocationModel> cachedLocations = locationList != null
+        ? locationList
+              .map((e) => LocationModel.fromJson(Map<String, dynamic>.from(e)))
+              .toList()
+        : [];
+
+    final bool hasMore = rawData['hasMore'] as bool? ?? false;
+
+    return {
+      'info': {'next_page': hasMore ? 'dummy' : null},
+      'results': cachedLocations,
+    };
   }
 }
