@@ -14,6 +14,8 @@ class CharacterPage extends StatefulWidget {
 
 class _CharacterPageState extends State<CharacterPage> {
   final ScrollController _scrollController = ScrollController();
+  final TextEditingController _searchController = TextEditingController();
+  bool _isSearching = false;
 
   @override
   void initState() {
@@ -29,51 +31,109 @@ class _CharacterPageState extends State<CharacterPage> {
     if (_scrollController.position.pixels >=
             _scrollController.position.maxScrollExtent - 200 &&
         state is CharactersLoaded &&
-        state.hasMore) {
+        state.hasMore &&
+        !_isSearching) {
       cubit.getCharacters(loadMore: true);
     }
+  }
+
+  void _startSearch() {
+    setState(() {
+      _isSearching = true;
+    });
+  }
+
+  void _stopSearch() {
+    _searchController.clear();
+    context.read<CharactersCubit>().searchCharacters('');
+    setState(() {
+      _isSearching = false;
+    });
   }
 
   @override
   void dispose() {
     _scrollController.dispose();
+    _searchController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<CharactersCubit>();
+
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        title: _isSearching
+            ? TextField(
+                controller: _searchController,
+                autofocus: true,
+                style: const TextStyle(color: Colors.white),
+                decoration: const InputDecoration(
+                  hintText: 'Search character...',
+                  hintStyle: TextStyle(color: Colors.white54),
+                  border: InputBorder.none,
+                ),
+                onChanged: cubit.searchCharacters,
+              )
+            : const Text('Characters', style: TextStyle(color: Colors.white)),
+        actions: [
+          IconButton(
+            icon: Icon(
+              _isSearching ? Icons.clear : Icons.search,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              if (_isSearching) {
+                _stopSearch();
+              } else {
+                _startSearch();
+              }
+            },
+          ),
+        ],
+      ),
       body: BlocBuilder<CharactersCubit, CharactersState>(
         builder: (context, state) {
           if (state is CharactersLoading || state is CharactersInitial) {
             return const Center(child: CupertinoActivityIndicator());
           } else if (state is CharactersLoaded) {
-            final characters = state.characters;
-
             return ListView(
               controller: _scrollController,
               padding: const EdgeInsets.symmetric(vertical: 20),
               children: [
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16),
-                  child: Text("Main Characters",
-                      style: TextStyle(color: Colors.white, fontSize: 24)),
-                ),
-                const SizedBox(height: 12),
-                MainCharactersListView(characters: characters),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16),
-                  child: Text("Characters",
-                      style: TextStyle(color: Colors.white, fontSize: 24)),
-                ),
-                const SizedBox(height: 12),
-                CharacterListWithPagination(), // ✅ now self-contained grid
+                if (!_isSearching) ...[
+                  const SizedBox(height: 12),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    child: Text(
+                      "Main Characters",
+                      style: TextStyle(color: Colors.white, fontSize: 24),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  MainCharactersListView(
+                    characters: context.read<CharactersCubit>().characters,
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    child: Text(
+                      "Characters",
+                      style: TextStyle(color: Colors.white, fontSize: 24),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                ],
+                const CharacterListWithPagination(),
               ],
             );
           } else if (state is CharactersError) {
             return Center(
-              child: Text("Error: ${state.message}",
-                  style: const TextStyle(color: Colors.red)),
+              child: Text(
+                "Error: ${state.message}",
+                style: const TextStyle(color: Colors.red),
+              ),
             );
           } else {
             return const SizedBox.shrink();

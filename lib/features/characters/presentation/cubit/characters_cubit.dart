@@ -18,6 +18,30 @@ class CharactersCubit extends Cubit<CharactersState> {
     ..._priorityCharactersLoaded,
     ..._regularCharacters,
   ];
+  List<CharacterModel> _filteredCharacters = [];
+
+  void searchCharacters(String query) {
+    if (query.isEmpty) {
+      emit(
+        CharactersLoaded(
+          characters: [..._priorityCharactersLoaded, ..._regularCharacters],
+          hasMore: _hasMore,
+        ),
+      );
+    } else {
+      final lowerQuery = query.toLowerCase();
+      _filteredCharacters = characters
+          .where((c) => c.name?.toLowerCase().contains(lowerQuery) ?? false)
+          .toList();
+
+      emit(
+        CharactersLoaded(
+          characters: List.from(_filteredCharacters),
+          hasMore: false,
+        ),
+      );
+    }
+  }
 
   final List<String> _priorityOrder = [
     'eren jaeger',
