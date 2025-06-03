@@ -99,6 +99,15 @@ class _CharacterPageState extends State<CharacterPage> {
           if (state is CharactersLoading || state is CharactersInitial) {
             return const Center(child: CupertinoActivityIndicator());
           } else if (state is CharactersLoaded) {
+            final character = state.characters;
+            if (character.isEmpty) {
+              return const Center(
+                child: Text(
+                  "No Character found",
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
+              );
+            }
             return CustomScrollView(
               controller: _scrollController,
               physics: const BouncingScrollPhysics(

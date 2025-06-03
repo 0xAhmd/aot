@@ -13,8 +13,8 @@ class OrganizationsCubit extends Cubit<OrganizationsState> {
   Future<void> getOrganizations() async {
     emit(OrganizationsLoading());
     try {
-      final organaizations = await organizationsRepo.getOrgznizations();
-      emit(OrganizationsLoaded(organaizations: organaizations));
+      final organizations = await organizationsRepo.getOrgznizations();
+      emit(OrganizationsLoaded(organaizations: organizations));
     } catch (e) {
       emit(OrganizationsError(errorMessage: e.toString()));
     }
