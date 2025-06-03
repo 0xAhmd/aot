@@ -52,7 +52,7 @@ class CharacterModel {
   CharacterModel({
     required this.id,
     required this.name,
-    required this.img,
+     this.img,
     required this.nicknames,
     required this.roles,
     this.age,

@@ -594,8 +594,7 @@ String getDescription(String name) {
         'A Warrior candidate from Marley, Zofia is blunt and intelligent. Her premature death in the Liberio attack reflects the cruel unpredictability of war.',
   };
 
-  String normalizedName = name.toLowerCase().trim();
 
-  return descriptions[normalizedName.toLowerCase()] ??
+  return descriptions[name] ??
       'Description not available for this character.';
 }

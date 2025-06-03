@@ -31,6 +31,7 @@ class CharacterListWithPagination extends StatelessWidget {
               if (index < characters.length) {
                 final char = characters[index];
                 return CharacterCard(
+                  character: char,
                   imageUrl: char.img ?? '',
                   title: char.name ?? '',
                 );
