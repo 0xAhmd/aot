@@ -1,5 +1,6 @@
 import 'package:aot/features/characters/helper/linkify.dart';
 import 'package:aot/features/characters/helper/organizations_description.dart';
+import 'package:aot/features/characters/presentation/widgets/description.dart';
 import 'package:aot/features/organaizations/data/models/organaizations.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -146,7 +147,10 @@ class OrganizationDetailsPage extends StatelessWidget {
                     buildDivider(220),
 
                     // Description is plain text
-                    info('Description:\n', getDescription(organization.name)),
+                    characterDescription(
+                      'Description:\n',
+                      getDescription(organization.name),
+                    ),
                   ],
                 ),
               ),
