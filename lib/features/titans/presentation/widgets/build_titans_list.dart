@@ -26,6 +26,7 @@ Widget titansList() {
           itemBuilder: (context, index) {
             final titan = titans[index];
             return TitansCard(
+              titan: titan,
               imageUrl: titan.img ?? '',
               title: titan.name ?? '',
             );
