@@ -45,10 +45,10 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           appBarTheme: AppBarTheme(
-            color: const Color.fromARGB(255, 25, 29, 37),
+            color: const Color(0xff010919),
             foregroundColor: Colors.white,
           ),
-          scaffoldBackgroundColor: const Color.fromARGB(255, 25, 29, 37),
+          scaffoldBackgroundColor: const Color(0xff010919),
           fontFamily: GoogleFonts.tinos().fontFamily,
         ),
         home: const HomePage(),
