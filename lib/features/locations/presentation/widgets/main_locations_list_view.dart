@@ -1,5 +1,5 @@
-import 'package:aot/features/locations/data/models/location_model.dart';
-import 'package:aot/features/locations/presentation/widgets/main_locations_card.dart';
+import '../../data/models/location_model.dart';
+import 'main_locations_card.dart';
 import 'package:flutter/material.dart';
 
 class MainLocationsListView extends StatelessWidget {

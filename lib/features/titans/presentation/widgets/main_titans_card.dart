@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class MainTitansCard extends StatelessWidget {
@@ -34,7 +33,11 @@ class MainTitansCard extends StatelessWidget {
                   height: 140,
                   width: 190,
                   color: Colors.grey[800],
-                  child: const Icon(Icons.broken_image, color: Colors.white, size: 32),
+                  child: const Icon(
+                    Icons.broken_image,
+                    color: Colors.white,
+                    size: 32,
+                  ),
                 );
               },
             ),

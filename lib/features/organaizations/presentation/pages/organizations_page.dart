@@ -1,5 +1,5 @@
-import 'package:aot/features/organaizations/presentation/cubit/organizations_cubit.dart';
-import 'package:aot/features/organaizations/presentation/pages/organization_details_page.dart';
+import '../cubit/organizations_cubit.dart';
+import 'organization_details_page.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

@@ -1,5 +1,5 @@
-import 'package:aot/features/characters/data/models/character_model.dart';
-import 'package:aot/features/characters/data/repository/characters_repo.dart';
+import '../../data/models/character_model.dart';
+import '../../data/repository/characters_repo.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
@@ -15,9 +15,9 @@ class CharactersCubit extends Cubit<CharactersState> {
   final List<CharacterModel> _regularCharacters = [];
 
   List<CharacterModel> get characters => [
-        ..._priorityCharactersLoaded,
-        ..._regularCharacters,
-      ];
+    ..._priorityCharactersLoaded,
+    ..._regularCharacters,
+  ];
 
   List<CharacterModel> _filteredCharacters = [];
 
@@ -102,8 +102,8 @@ class CharactersCubit extends Cubit<CharactersState> {
 
       _regularCharacters.sort(
         (a, b) => (a.name ?? '').toLowerCase().compareTo(
-              (b.name ?? '').toLowerCase(),
-            ),
+          (b.name ?? '').toLowerCase(),
+        ),
       );
 
       emit(

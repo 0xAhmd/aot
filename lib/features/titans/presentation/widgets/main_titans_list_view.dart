@@ -1,5 +1,5 @@
-import 'package:aot/features/titans/data/models/titans_model.dart';
-import 'package:aot/features/titans/presentation/widgets/main_titans_card.dart';
+import '../../data/models/titans_model.dart';
+import 'main_titans_card.dart';
 import 'package:flutter/material.dart';
 
 class MainTitansListView extends StatelessWidget {

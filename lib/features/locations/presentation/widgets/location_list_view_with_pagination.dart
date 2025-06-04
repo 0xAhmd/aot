@@ -1,5 +1,5 @@
-import 'package:aot/features/locations/presentation/cubit/locations_cubit.dart';
-import 'package:aot/features/locations/presentation/widgets/location_card.dart';
+import '../cubit/locations_cubit.dart';
+import 'location_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

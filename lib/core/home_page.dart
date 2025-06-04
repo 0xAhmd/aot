@@ -1,7 +1,7 @@
-import 'package:aot/features/characters/presentation/pages/character_page.dart';
-import 'package:aot/features/locations/presentation/pages/location_page.dart';
-import 'package:aot/features/organaizations/presentation/pages/organizations_page.dart';
-import 'package:aot/features/titans/presentation/pages/titans_page.dart';
+import '../features/characters/presentation/pages/character_page.dart';
+import '../features/locations/presentation/pages/location_page.dart';
+import '../features/organaizations/presentation/pages/organizations_page.dart';
+import '../features/titans/presentation/pages/titans_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';

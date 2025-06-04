@@ -6,22 +6,13 @@ import 'package:flutter/foundation.dart';
 class AppInterceptors extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    if (kDebugMode) {
-      print('➡️ REQUEST: [${options.method}] ${options.uri}');
-      print('Headers: ${options.headers}');
-      print('Body: ${options.data}');
-    }
+    if (kDebugMode) {}
     super.onRequest(options, handler);
   }
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
-    if (kDebugMode) {
-      print(
-        '✅ RESPONSE: [${response.statusCode}] ${response.requestOptions.uri}',
-      );
-      print('Data: ${response.data}');
-    }
+    if (kDebugMode) {}
     super.onResponse(response, handler);
   }
 
@@ -29,10 +20,7 @@ class AppInterceptors extends Interceptor {
   void onError(DioException err, ErrorInterceptorHandler handler) {
     String errorDescription = '';
 
-    if (kDebugMode) {
-      print('❌ ERROR: [${err.response?.statusCode}] ${err.requestOptions.uri}');
-      print('Message: ${err.message}');
-    }
+    if (kDebugMode) {}
 
     if (err.type == DioExceptionType.connectionTimeout) {
       errorDescription = "Connection timeout";

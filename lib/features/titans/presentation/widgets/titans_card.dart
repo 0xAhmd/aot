@@ -1,5 +1,5 @@
-import 'package:aot/features/titans/data/models/titans_model.dart';
-import 'package:aot/features/titans/presentation/pages/titans_details_page.dart';
+import '../../data/models/titans_model.dart';
+import '../pages/titans_details_page.dart';
 import 'package:flutter/material.dart';
 
 class TitansCard extends StatelessWidget {

@@ -1,6 +1,6 @@
-import 'package:aot/features/titans/presentation/cubit/titans_cubit.dart';
-import 'package:aot/features/titans/presentation/widgets/build_titans_list.dart';
-import 'package:aot/features/titans/presentation/widgets/main_titans_list_view.dart';
+import '../cubit/titans_cubit.dart';
+import '../widgets/build_titans_list.dart';
+import '../widgets/main_titans_list_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

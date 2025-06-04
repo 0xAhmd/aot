@@ -1,5 +1,5 @@
-import 'package:aot/features/characters/presentation/cubit/characters_cubit.dart';
-import 'package:aot/features/characters/presentation/widgets/character_card.dart';
+import '../cubit/characters_cubit.dart';
+import 'character_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

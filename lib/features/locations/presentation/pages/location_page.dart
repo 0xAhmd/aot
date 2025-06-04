@@ -1,6 +1,6 @@
-import 'package:aot/features/locations/presentation/cubit/locations_cubit.dart';
-import 'package:aot/features/locations/presentation/widgets/location_list_view_with_pagination.dart';
-import 'package:aot/features/locations/presentation/widgets/main_locations_list_view.dart';
+import '../cubit/locations_cubit.dart';
+import '../widgets/location_list_view_with_pagination.dart';
+import '../widgets/main_locations_list_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

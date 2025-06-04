@@ -1,17 +1,17 @@
-import 'package:aot/features/locations/data/api/location_web_service.dart';
-import 'package:aot/features/locations/data/repo/locations_repo.dart';
-import 'package:aot/features/locations/presentation/cubit/locations_cubit.dart';
+import 'features/locations/data/api/location_web_service.dart';
+import 'features/locations/data/repo/locations_repo.dart';
+import 'features/locations/presentation/cubit/locations_cubit.dart';
 import 'package:get_it/get_it.dart';
 import 'package:dio/dio.dart';
-import 'package:aot/features/characters/data/api/character_web_services.dart';
-import 'package:aot/features/characters/data/repository/characters_repo.dart';
-import 'package:aot/features/characters/presentation/cubit/characters_cubit.dart';
-import 'package:aot/features/organaizations/data/api/organizations_web_service.dart';
-import 'package:aot/features/organaizations/data/repo/organizations_repo.dart';
-import 'package:aot/features/organaizations/presentation/cubit/organizations_cubit.dart';
-import 'package:aot/features/titans/data/api/titans_web_services.dart';
-import 'package:aot/features/titans/data/repo/titans_repo.dart';
-import 'package:aot/features/titans/presentation/cubit/titans_cubit.dart';
+import 'features/characters/data/api/character_web_services.dart';
+import 'features/characters/data/repository/characters_repo.dart';
+import 'features/characters/presentation/cubit/characters_cubit.dart';
+import 'features/organaizations/data/api/organizations_web_service.dart';
+import 'features/organaizations/data/repo/organizations_repo.dart';
+import 'features/organaizations/presentation/cubit/organizations_cubit.dart';
+import 'features/titans/data/api/titans_web_services.dart';
+import 'features/titans/data/repo/titans_repo.dart';
+import 'features/titans/presentation/cubit/titans_cubit.dart';
 
 final sl = GetIt.instance;
 

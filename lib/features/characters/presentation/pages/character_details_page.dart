@@ -1,5 +1,5 @@
-import 'package:aot/features/characters/data/models/character_model.dart';
-import 'package:aot/features/characters/presentation/widgets/description.dart';
+import '../../data/models/character_model.dart';
+import '../widgets/description.dart';
 
 import '../../helper/character_description.dart';
 import 'package:flutter/material.dart';

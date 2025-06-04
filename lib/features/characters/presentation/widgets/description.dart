@@ -6,10 +6,7 @@ Widget characterDescription(String title, String description) {
     animatedTexts: [
       TypewriterAnimatedText(
         description,
-        textStyle: const TextStyle(
-          color: Colors.white,
-          fontSize: 27,
-        ),
+        textStyle: const TextStyle(color: Colors.white, fontSize: 27),
         speed: const Duration(milliseconds: 50),
       ),
     ],

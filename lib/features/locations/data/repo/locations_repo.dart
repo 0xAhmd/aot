@@ -1,6 +1,6 @@
-import 'package:aot/features/locations/data/api/location_web_service.dart';
-import 'package:aot/features/locations/data/models/location_model.dart';
-import 'package:aot/features/locations/data/local_data_src/location_cache_manager.dart';
+import '../api/location_web_service.dart';
+import '../local_data_src/location_cache_manager.dart';
+import '../models/location_model.dart';
 
 class LocationsRepo {
   final LocationWebService locationWebService;

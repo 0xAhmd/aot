@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:aot/features/locations/data/models/location_model.dart';
-import 'package:aot/features/locations/data/repo/locations_repo.dart';
+import '../../data/models/location_model.dart';
+import '../../data/repo/locations_repo.dart';
 
 part 'locations_state.dart';
 
@@ -59,5 +59,4 @@ class LocationsCubit extends Cubit<LocationsState> {
     }
   }
 }
-  // ...existing code...
-
+// ...existing code...

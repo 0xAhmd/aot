@@ -91,8 +91,9 @@ CharacterModel _$CharacterModelFromJson(Map<String, dynamic> json) =>
       nicknames: (json['nicknames'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
-      roles:
-          (json['roles'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      roles: (json['roles'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
       age: json['age'],
       gender: json['gender'] as String?,
       height: json['height'] as String?,

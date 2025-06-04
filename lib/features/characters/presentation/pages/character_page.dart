@@ -1,6 +1,6 @@
-import 'package:aot/features/characters/presentation/cubit/characters_cubit.dart';
-import 'package:aot/features/characters/presentation/widgets/build_character_list.dart';
-import 'package:aot/features/characters/presentation/widgets/main_characters_list_view.dart';
+import '../cubit/characters_cubit.dart';
+import '../widgets/build_character_list.dart';
+import '../widgets/main_characters_list_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

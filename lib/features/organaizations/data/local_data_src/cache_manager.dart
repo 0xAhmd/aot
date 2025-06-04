@@ -1,5 +1,6 @@
-import 'package:aot/features/organaizations/data/models/organaizations.dart';
 import 'package:hive/hive.dart';
+
+import '../models/organaizations.dart';
 
 class OrganizationCacheManager {
   static const String boxName = 'organizations_cache';
@@ -20,7 +21,6 @@ class OrganizationCacheManager {
     };
 
     await box.put('page_$page', cacheData);
-    print('Cached ${organizations.length} organizations for page $page');
   }
 
   static Future<List<Organaizations>?> getCachedOrganizationsPage(
@@ -30,7 +30,6 @@ class OrganizationCacheManager {
 
     final cacheData = box.get('page_$page');
     if (cacheData == null) {
-      print('No cache found for page $page');
       return null;
     }
 
@@ -43,13 +42,10 @@ class OrganizationCacheManager {
 
     if (isExpired) {
       await box.delete('page_$page');
-      print('Cache expired for page $page, deleted cache');
+
       return null;
     }
 
-    print(
-      'Loaded ${cachedOrganizations.length} organizations from cache for page $page',
-    );
     return cachedOrganizations;
   }
 }

@@ -1,4 +1,4 @@
-import 'package:aot/features/locations/data/models/location_model.dart';
+import '../models/location_model.dart';
 import 'package:hive/hive.dart';
 
 class LocationCacheManager {
@@ -24,20 +24,13 @@ class LocationCacheManager {
     };
 
     await box.put('page_$page', cacheData);
-    print('Cached ${locations.length} locations for page $page');
   }
 
-  /// Retrieve cached page data.
-  /// Returns null if no cache or expired.
-  /// Otherwise returns a Map with keys:
-  /// - 'info': Map<String, dynamic> containing pagination info
-  /// - 'results': List<LocationModel> with cached locations
   static Future<Map<String, dynamic>?> getCachedLocationsPage(int page) async {
     final box = await _openBox();
     final dynamic rawData = box.get('page_$page');
 
     if (rawData == null || rawData is! Map) {
-      print('No valid cache found for page $page');
       return null;
     }
 
@@ -53,7 +46,7 @@ class LocationCacheManager {
         DateTime.now().millisecondsSinceEpoch - timestamp > 12 * 60 * 60 * 1000;
     if (isExpired) {
       await box.delete('page_$page');
-      print('Cache expired for page $page, deleted cache');
+
       return null;
     }
 

@@ -1,7 +1,8 @@
-import 'package:aot/features/organaizations/data/models/organaizations.dart';
-import 'package:aot/features/organaizations/data/repo/organizations_repo.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+
+import '../../data/models/organaizations.dart';
+import '../../data/repo/organizations_repo.dart';
 
 part 'organizations_state.dart';
 

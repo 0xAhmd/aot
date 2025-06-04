@@ -1,6 +1,6 @@
-import 'package:aot/features/characters/data/api/character_web_services.dart';
-import 'package:aot/features/characters/data/local_data_src/cache_manager.dart';
-import 'package:aot/features/characters/data/models/character_model.dart';
+import '../api/character_web_services.dart';
+import '../local_data_src/cache_manager.dart';
+import '../models/character_model.dart';
 
 class CharactersRepo {
   final CharacterWebServices characterWebServices;

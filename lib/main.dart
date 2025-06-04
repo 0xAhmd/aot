@@ -1,12 +1,12 @@
-import 'package:aot/core/home_page.dart';
-import 'package:aot/features/characters/data/models/character_model.dart';
-import 'package:aot/features/characters/presentation/cubit/characters_cubit.dart';
-import 'package:aot/features/locations/data/models/location_model.dart';
-import 'package:aot/features/locations/presentation/cubit/locations_cubit.dart';
-import 'package:aot/features/organaizations/data/models/organaizations.dart';
-import 'package:aot/features/organaizations/presentation/cubit/organizations_cubit.dart';
+import 'core/home_page.dart';
+import 'features/characters/data/models/character_model.dart';
+import 'features/characters/presentation/cubit/characters_cubit.dart';
+import 'features/locations/data/models/location_model.dart';
+import 'features/locations/presentation/cubit/locations_cubit.dart';
+import 'features/organaizations/data/models/organaizations.dart';
+import 'features/organaizations/presentation/cubit/organizations_cubit.dart';
 
-import 'package:aot/features/titans/presentation/cubit/titans_cubit.dart';
+import 'features/titans/presentation/cubit/titans_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -18,7 +18,7 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(CharacterModelAdapter());
   Hive.registerAdapter(OrganaizationsAdapter());
-    Hive.registerAdapter(LocationModelAdapter());
+  Hive.registerAdapter(LocationModelAdapter());
 
   setupLocator(); // Initialize GetIt
   runApp(const MyApp());

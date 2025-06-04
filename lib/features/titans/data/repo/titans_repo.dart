@@ -1,5 +1,5 @@
-import 'package:aot/features/titans/data/api/titans_web_services.dart';
-import 'package:aot/features/titans/data/models/titans_model.dart';
+import '../api/titans_web_services.dart';
+import '../models/titans_model.dart';
 
 class TitansRepo {
   final TitanWebServices webService;

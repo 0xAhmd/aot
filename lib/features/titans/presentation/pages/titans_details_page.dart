@@ -1,6 +1,6 @@
-import 'package:aot/features/characters/helper/character_description.dart';
-import 'package:aot/features/characters/presentation/widgets/description.dart';
-import 'package:aot/features/titans/data/models/titans_model.dart';
+import '../../../characters/helper/character_description.dart';
+import '../../../characters/presentation/widgets/description.dart';
+import '../../data/models/titans_model.dart';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';

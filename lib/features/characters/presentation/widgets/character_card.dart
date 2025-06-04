@@ -1,5 +1,5 @@
-import 'package:aot/features/characters/data/models/character_model.dart';
-import 'package:aot/features/characters/presentation/pages/character_details_page.dart';
+import '../../data/models/character_model.dart';
+import '../pages/character_details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 

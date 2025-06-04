@@ -11,7 +11,7 @@ final class LocationsLoaded extends LocationsState {
   final List<LocationModel> locations;
   final bool hasMore;
 
-  LocationsLoaded({ required this.hasMore, required this.locations});
+  LocationsLoaded({required this.hasMore, required this.locations});
 }
 
 final class LocationsError extends LocationsState {

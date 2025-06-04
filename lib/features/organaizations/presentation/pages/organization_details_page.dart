@@ -1,7 +1,7 @@
-import 'package:aot/features/characters/helper/linkify.dart';
-import 'package:aot/features/characters/helper/organizations_description.dart';
-import 'package:aot/features/characters/presentation/widgets/description.dart';
-import 'package:aot/features/organaizations/data/models/organaizations.dart';
+import '../../../characters/helper/linkify.dart';
+import '../../../characters/helper/organizations_description.dart';
+import '../../../characters/presentation/widgets/description.dart';
+import '../../data/models/organaizations.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

@@ -1,5 +1,5 @@
-import 'package:aot/features/titans/data/models/titans_model.dart';
-import 'package:aot/features/titans/data/repo/titans_repo.dart';
+import '../../data/models/titans_model.dart';
+import '../../data/repo/titans_repo.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
