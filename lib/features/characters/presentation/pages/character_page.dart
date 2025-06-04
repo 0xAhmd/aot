@@ -156,7 +156,7 @@ class _CharacterPageState extends State<CharacterPage> {
             return Center(
               child: Text(
                 "Error: ${state.message}",
-                style: const TextStyle(color: Colors.red),
+                style: const TextStyle(color: Colors.white),
               ),
             );
           } else {
