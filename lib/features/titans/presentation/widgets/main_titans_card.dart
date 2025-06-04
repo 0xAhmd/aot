@@ -15,17 +15,16 @@ class MainTitansCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 190, // was 150
-      margin: const EdgeInsets.only(right: 16), // more space between cards
+      width: 190,
+      margin: const EdgeInsets.only(right: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Image
           ClipRRect(
-            borderRadius: BorderRadius.circular(12), // slightly more rounded
+            borderRadius: BorderRadius.circular(12),
             child: Image.network(
               imageUrl,
-              height: 140, // was 100
+              height: 140,
               width: 190,
               fit: BoxFit.cover,
               errorBuilder: (context, error, stackTrace) {
@@ -44,26 +43,21 @@ class MainTitansCard extends StatelessWidget {
           ),
           const SizedBox(height: 12),
 
-          // Title
           Text(
             title,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: const TextStyle(
-              fontSize: 16, // was 14
+              fontSize: 16,
               color: Colors.white,
               fontWeight: FontWeight.bold,
             ),
           ),
 
-          // Subtitle
           if (subtitle != null)
             Text(
               subtitle!,
-              style: const TextStyle(
-                fontSize: 13, // was 12
-                color: Colors.white70,
-              ),
+              style: const TextStyle(fontSize: 13, color: Colors.white70),
             ),
         ],
       ),

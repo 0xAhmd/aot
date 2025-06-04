@@ -14,7 +14,7 @@ class OrganizationListView extends StatelessWidget {
       itemCount: filteredOrgs.length,
       itemBuilder: (context, index) {
         final org = filteredOrgs[index];
-        return InkWell(
+        return GestureDetector(
           onTap: () {
             Navigator.push(
               context,
