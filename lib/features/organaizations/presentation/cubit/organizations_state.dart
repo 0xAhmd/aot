@@ -1,3 +1,4 @@
+//cspell:disable
 part of 'organizations_cubit.dart';
 
 @immutable

@@ -1,3 +1,4 @@
+//cspell:disable
 import '../cubit/organizations_cubit.dart';
 import 'organization_details_page.dart';
 import 'package:cached_network_image/cached_network_image.dart';

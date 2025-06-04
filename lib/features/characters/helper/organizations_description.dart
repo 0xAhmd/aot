@@ -1,3 +1,5 @@
+// cspell:disable
+
 String getDescription(String name) {
   // print('Looking up description for: ${name.toLowerCase()}');
   Map<String, String> descriptions = {

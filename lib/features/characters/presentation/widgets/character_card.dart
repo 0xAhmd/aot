@@ -1,3 +1,4 @@
+//cspell:disable
 import '../../data/models/character_model.dart';
 import '../pages/character_details_page.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,9 @@ class CharacterCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (_) => CharctersDetailsPage(character: character),
+            builder: (_) => CharctersDetailsPage(
+              character: character,
+            ),
           ),
         );
       },

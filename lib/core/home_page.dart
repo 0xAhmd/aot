@@ -1,3 +1,4 @@
+//cspell:disable
 import '../features/characters/presentation/pages/character_page.dart';
 import '../features/locations/presentation/pages/location_page.dart';
 import '../features/organaizations/presentation/pages/organizations_page.dart';

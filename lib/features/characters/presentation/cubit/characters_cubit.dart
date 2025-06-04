@@ -1,3 +1,5 @@
+// cspell:disable
+
 import '../../data/models/character_model.dart';
 import '../../data/repository/characters_repo.dart';
 import 'package:bloc/bloc.dart';

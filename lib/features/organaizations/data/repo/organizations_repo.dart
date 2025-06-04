@@ -1,3 +1,4 @@
+//cspell:disable
 import 'package:aot/features/organaizations/data/local_data_src/cache_manager.dart'; // adjust path if needed
 
 import '../api/organizations_web_service.dart';

@@ -1,3 +1,4 @@
+//cspell:disable
 import 'package:hive/hive.dart';
 
 import '../models/organaizations.dart';

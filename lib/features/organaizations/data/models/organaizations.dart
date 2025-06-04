@@ -1,3 +1,4 @@
+//cspell:disable
 import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -15,7 +16,6 @@ class Organaizations {
   @HiveField(3)
   final List<String> occupations;
   @HiveField(4)
-  ///jsonkey here
   @JsonKey(name: 'notable_members')
   final List<String> notableMembers;
   @HiveField(5)

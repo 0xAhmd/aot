@@ -1,3 +1,4 @@
+//cspell:disable
 import '../../data/models/location_model.dart';
 import 'main_locations_card.dart';
 import 'package:flutter/material.dart';

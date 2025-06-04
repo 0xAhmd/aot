@@ -1,3 +1,4 @@
+//cspell:disable
 import '../../../characters/helper/linkify.dart';
 import '../../../characters/helper/organizations_description.dart';
 import '../../../characters/presentation/widgets/description.dart';

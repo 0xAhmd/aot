@@ -1,3 +1,4 @@
+//cspell:disable
 import '../../data/models/character_model.dart';
 import 'main_characters_card.dart';
 import 'package:flutter/material.dart';

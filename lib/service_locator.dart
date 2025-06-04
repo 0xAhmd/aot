@@ -1,3 +1,4 @@
+//cspell:disable
 import 'features/locations/data/api/location_web_service.dart';
 import 'features/locations/data/repo/locations_repo.dart';
 import 'features/locations/presentation/cubit/locations_cubit.dart';

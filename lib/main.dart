@@ -1,3 +1,4 @@
+//cspell:disable
 import 'core/home_page.dart';
 import 'features/characters/data/models/character_model.dart';
 import 'features/characters/presentation/cubit/characters_cubit.dart';

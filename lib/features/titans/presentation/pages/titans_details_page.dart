@@ -1,3 +1,4 @@
+//cspell:disable
 import '../../../characters/helper/character_description.dart';
 import '../../../characters/presentation/widgets/description.dart';
 import '../../data/models/titans_model.dart';

@@ -1,5 +1,6 @@
+  // cspell:disable
 String getDescription(String name) {
-  // print('Looking up description for: ${name.toLowerCase()}');
+
   Map<String, String> descriptions = {
     'Marlo Freudenberg':
         '"Marlo Freudenberg, a righteous and idealistic soldier, transitioned from the Military Police Regiment to the Scout Regiment, driven by his passion for justice and desire to make a real difference, though his journey revealed the complexities of human nature and flawed institutions."',
