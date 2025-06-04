@@ -128,24 +128,8 @@ class OrganizationDetailsPage extends StatelessWidget {
 
                     // List
                     infoList('Occupations:', organization.occupations),
-                    buildDivider(240),
 
                     // Single string (could be link) → wrapped in list
-                    infoList('Debut Episode:', [organization.debut]),
-                    buildDivider(240),
-
-                    // Notable members: could be links
-                    infoList('Notable Members:', organization.notableMembers),
-                    buildDivider(220),
-
-                    // Former members: list or 'None'
-                    infoList(
-                      'Former Members:',
-                      organization.notableFormerMembers.isEmpty
-                          ? ['None']
-                          : organization.notableFormerMembers,
-                    ),
-                    buildDivider(220),
 
                     // Description is plain text
                     characterDescription(
