@@ -1,7 +1,8 @@
+//cspell:disable
+
 import 'package:aot/features/organaizations/data/models/organaizations.dart';
 import 'package:aot/features/organaizations/presentation/pages/organization_details_page.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class OrganizationListView extends StatelessWidget {

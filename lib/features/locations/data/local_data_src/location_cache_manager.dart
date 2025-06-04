@@ -66,7 +66,7 @@ class LocationCacheManager {
     };
   }
 
-    static Future<void> clearCache() async {
+  static Future<void> clearCache() async {
     final box = await _openBox();
     await box.clear();
   }

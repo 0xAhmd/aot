@@ -1,3 +1,4 @@
+//cspell:disable
 String getDescription(String name) {
   const Map<String, String> locationDescriptions = {
     "Basement":
