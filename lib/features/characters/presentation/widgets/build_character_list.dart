@@ -15,8 +15,7 @@ class CharacterListWithPagination extends StatelessWidget {
 
           return GridView.builder(
             shrinkWrap: true,
-            physics:
-                const NeverScrollableScrollPhysics(), // ✅ Prevent nested scroll
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: state.hasMore
                 ? characters.length + 1
                 : characters.length,
@@ -24,7 +23,7 @@ class CharacterListWithPagination extends StatelessWidget {
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               crossAxisSpacing: 12,
-              mainAxisSpacing: 12,
+              mainAxisSpacing: 18,
               childAspectRatio: 0.75,
             ),
             itemBuilder: (context, index) {
