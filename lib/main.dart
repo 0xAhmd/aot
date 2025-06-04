@@ -44,8 +44,8 @@ class MyApp extends StatelessWidget {
         title: 'AOT',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          appBarTheme: AppBarTheme(
-            color: const Color(0xff010919),
+          appBarTheme: const AppBarTheme(
+            color: Color(0xff010919),
             foregroundColor: Colors.white,
           ),
           scaffoldBackgroundColor: const Color(0xff010919),
