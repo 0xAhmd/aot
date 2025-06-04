@@ -49,4 +49,9 @@ class OrganizationCacheManager {
 
     return cachedOrganizations;
   }
+
+    static Future<void> clearCache() async {
+    final box = await _openBox();
+    await box.clear();
+  }
 }

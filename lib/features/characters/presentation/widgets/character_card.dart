@@ -24,9 +24,7 @@ class CharacterCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (_) => CharctersDetailsPage(
-              character: character,
-            ),
+            builder: (_) => CharctersDetailsPage(character: character),
           ),
         );
       },
@@ -61,7 +59,7 @@ class CharacterCard extends StatelessWidget {
                     child: const Icon(Icons.image, color: Colors.white),
                   ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 12),
           Text(
             title,
             style: const TextStyle(color: Colors.white, fontSize: 16),

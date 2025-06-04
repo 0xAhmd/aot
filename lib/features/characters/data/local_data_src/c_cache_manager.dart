@@ -45,4 +45,9 @@ class CharacterCacheManager {
 
     return cachedCharacters;
   }
+
+  static Future<void> clearCache() async {
+    final box = await _openBox();
+    await box.clear();
+  }
 }

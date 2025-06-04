@@ -49,7 +49,7 @@ class LocationCard extends StatelessWidget {
                     child: const Icon(Icons.image, color: Colors.white),
                   ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 12),
           Text(
             title,
             style: const TextStyle(color: Colors.white, fontSize: 16),

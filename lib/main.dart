@@ -1,4 +1,6 @@
 //cspell:disable
+import 'package:aot/features/titans/data/models/titans_model.dart';
+
 import 'core/home_page.dart';
 import 'features/characters/data/models/character_model.dart';
 import 'features/characters/presentation/cubit/characters_cubit.dart';
@@ -20,6 +22,7 @@ void main() async {
   Hive.registerAdapter(CharacterModelAdapter());
   Hive.registerAdapter(OrganaizationsAdapter());
   Hive.registerAdapter(LocationModelAdapter());
+  Hive.registerAdapter(TitanAdapter());
 
   setupLocator(); // Initialize GetIt
   runApp(const MyApp());

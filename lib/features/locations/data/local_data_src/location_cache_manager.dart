@@ -65,4 +65,9 @@ class LocationCacheManager {
       'results': cachedLocations,
     };
   }
+
+    static Future<void> clearCache() async {
+    final box = await _openBox();
+    await box.clear();
+  }
 }

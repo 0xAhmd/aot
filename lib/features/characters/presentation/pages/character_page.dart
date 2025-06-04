@@ -116,9 +116,11 @@ class _CharacterPageState extends State<CharacterPage> {
               slivers: [
                 CupertinoSliverRefreshControl(
                   onRefresh: () async {
+                    await Future.delayed(const Duration(milliseconds: 750));
                     await context.read<CharactersCubit>().getCharacters(
                       refresh: true,
                     );
+                    // <-- Add this line
                   },
                 ),
                 SliverPadding(

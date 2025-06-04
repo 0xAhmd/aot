@@ -116,7 +116,11 @@ class _LocationPageState extends State<LocationPage> {
               slivers: [
                 CupertinoSliverRefreshControl(
                   onRefresh: () async {
-                    await context.read<LocationsCubit>().getLocations();
+                    await Future.delayed(const Duration(milliseconds: 750));
+
+                    await context.read<LocationsCubit>().getLocations(
+                      refresh: true,
+                    );
                   },
                 ),
                 SliverPadding(

@@ -100,6 +100,8 @@ class _TitansPageState extends State<TitansPage> {
                 slivers: [
                   CupertinoSliverRefreshControl(
                     onRefresh: () async {
+                      await Future.delayed(const Duration(milliseconds: 750));
+
                       await cubit.getTitans(refresh: true);
                     },
                   ),

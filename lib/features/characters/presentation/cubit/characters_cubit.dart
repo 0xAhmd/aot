@@ -1,5 +1,7 @@
 // cspell:disable
 
+import 'package:aot/features/characters/data/local_data_src/c_cache_manager.dart';
+
 import '../../data/models/character_model.dart';
 import '../../data/repository/characters_repo.dart';
 import 'package:bloc/bloc.dart';
@@ -62,6 +64,9 @@ class CharactersCubit extends Cubit<CharactersState> {
     if (_isFetching || (!_hasMore && loadMore && !refresh)) return;
     _isFetching = true;
 
+    if (refresh) {
+      await CharacterCacheManager.clearCache();
+    }
     if (refresh || !loadMore) {
       // Reset for refresh or initial load
       _currentPage = 1;

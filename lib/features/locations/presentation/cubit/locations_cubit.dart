@@ -1,3 +1,4 @@
+import 'package:aot/features/locations/data/local_data_src/location_cache_manager.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import '../../data/models/location_model.dart';
@@ -29,9 +30,16 @@ class LocationsCubit extends Cubit<LocationsState> {
     }
   }
 
-  Future<void> getLocations({bool loadMore = false}) async {
+  Future<void> getLocations({
+    bool refresh = false,
+    bool loadMore = false,
+  }) async {
     if (_isFetching || (!_hasMore && loadMore)) return;
     _isFetching = true;
+
+    if (refresh) {
+      await LocationCacheManager.clearCache();
+    }
 
     if (!loadMore) {
       _currentPage = 1;
@@ -59,4 +67,5 @@ class LocationsCubit extends Cubit<LocationsState> {
     }
   }
 }
+
 // ...existing code...

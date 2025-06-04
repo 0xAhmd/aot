@@ -1,5 +1,5 @@
 import '../api/character_web_services.dart';
-import '../local_data_src/cache_manager.dart';
+import '../local_data_src/c_cache_manager.dart';
 import '../models/character_model.dart';
 
 class CharactersRepo {

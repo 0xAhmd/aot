@@ -1,4 +1,5 @@
 //cspell:disable
+import 'package:aot/features/organaizations/data/local_data_src/org_cache_manager.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
@@ -16,7 +17,13 @@ class OrganizationsCubit extends Cubit<OrganizationsState> {
 
   OrganizationsCubit(this.organizationsRepo) : super(OrganizationsInitial());
 
-  Future<void> getOrganizations({bool loadMore = false}) async {
+  Future<void> getOrganizations({
+    bool loadMore = false,
+    bool refresh = false,
+  }) async {
+    if (refresh) {
+      OrganizationCacheManager.clearCache();
+    }
     if (_isFetching || (!_hasMore && loadMore)) return;
     _isFetching = true;
 

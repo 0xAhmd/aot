@@ -1,3 +1,5 @@
+import 'package:aot/features/titans/data/local_data_src/t_cache_manager.dart';
+
 import '../../data/models/titans_model.dart';
 import '../../data/repo/titans_repo.dart';
 import 'package:bloc/bloc.dart';
@@ -14,6 +16,9 @@ class TitansCubit extends Cubit<TitansState> {
   Future<void> getTitans({bool refresh = false}) async {
     emit(TitansLoading());
     try {
+      if (refresh) {
+        await TitanCacheManager.clearCache(); // You need to implement this method
+      }
       _allTitans = await repository.getTitans();
       emit(TitansLoaded(titans: _allTitans));
     } catch (e) {
