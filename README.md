@@ -94,6 +94,18 @@ Some of the major packages used:
 
 Feel free to fork the repo, open issues, or submit PRs. All help is appreciated to grow this fandom app!
 
+
+### 🧪 Try It Out
+
+***Try the app on your Android device***  
+<p align="center">
+  <a href="https://github.com/0xAhmd/aot/releases/tag/v1.0.0">
+    <img src="https://img.shields.io/badge/Download-APK-green?style=for-the-badge&logo=android" alt="Download APK"/>
+  </a>
+</p>
+
+
+
 ## 📜 Disclaimer
 
 This app is made by fans for fans. All characters, names, and content belong to their respective owners including Hajime Isayama and the publishers of *Attack on Titan*.
